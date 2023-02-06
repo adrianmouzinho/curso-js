@@ -35,6 +35,8 @@ Produto.prototype.aumento = function(valor) {
 }
 
 const p1 = new Produto('Camisa', 50)
+
+// Literal
 const p2 = {
   nome: 'Caneca',
   preco: 15

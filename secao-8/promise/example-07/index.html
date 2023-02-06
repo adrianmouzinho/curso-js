@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Números primos</title>
+  <script src="main.js" defer></script>
+  <style>
+    .container {
+      margin: 8px 0;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <label for="quota">Números de primos:</label>
+    <input type="text" id="quota" name="quota" value="500000" />
+    <button id="generate">Gerar primos</button>
+    <button id="reload">Reload</button>
+  </div>
+
+  <textarea id="user-input" rows="5" cols="62" >Tente digitar aqui imediatamente após pressionar em "Gerar primos"</textarea>
+
+  <div id="output"></div>
+</body>
+</html>
