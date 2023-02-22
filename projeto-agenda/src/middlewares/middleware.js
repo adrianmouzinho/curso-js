@@ -1,5 +1,8 @@
 exports.middlewareGlobal = (req, res, next) => {
-  res.locals.variavelLocal = 'este é o valor da variável local'
+  res.locals.erros = req.flash('erros')
+  res.locals.sucesso = req.flash('sucesso')
+  res.locals.usuario = req.session.usuario
+
   next()
 }
 
@@ -20,5 +23,16 @@ exports.checkCsrfError = (err, req, res, next) => {
 
 exports.csrfMiddleware = (req, res, next) => {
   res.locals.csrfToken = req.csrfToken()
+  next()
+}
+
+exports.loginRequired = (req, res, next) => {
+  if (!req.session.usuario) {
+    req.flash('erros', 'Você precisa fazer login.')
+    return req.session.save(() => {
+      return res.redirect('/')
+    })
+  }
+
   next()
 }

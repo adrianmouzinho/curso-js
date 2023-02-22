@@ -1,0 +1,31 @@
+<%- include('includes/head') %>
+<%- include('includes/nav') %>
+
+  <form action="/contatos/edit/<%= contato._id %>" method="post" class="form edit-contact">
+    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+    <input type="hidden" name="id" value="<%= contato._id %>">
+    <h1>Editar contato</h1>
+    <p>Edite as informações desse contato.</p>
+
+    <%- include('includes/messages') %>
+
+    <div>
+      <label for="nome">Nome</label>
+      <input value="<%= contato.nome %>" type="text" id="nome" placeholder="Informe o nome" name="nome">
+    </div>
+    <div>
+      <label for="sobrenome">Sobrenome</label>
+      <input value="<%= contato.sobrenome %>" type="text" id="sobrenome" placeholder="Informe o sobrenome" name="sobrenome">
+    </div>
+    <div>
+      <label for="email">Endereço de email</label>
+      <input value="<%= contato.email %>" type="email" id="email" placeholder="Informe o email" name="email">
+    </div>
+    <div>
+      <label for="telefone">Telefone</label>
+      <input value="<%= contato.telefone %>" type="number" id="telefone" placeholder="Informe o telefone" name="telefone">
+    </div>
+    <button type="submit">Editar</button>
+  </form>
+
+<%- include('includes/footer') %>

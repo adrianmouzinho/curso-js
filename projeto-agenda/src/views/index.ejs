@@ -1,14 +1,47 @@
 <%- include('includes/head') %>
+<%- include('includes/nav') %>
 
   <section class="container">
-    <h1><%= csrfToken %></h1>
+    <h1>Agenda</h1>
+    <span>Crie uma conta para cadastrar seus contatos.</span>
 
-    <form action="/" method="post">
-      <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-      <label for="">Cliente</label>
-      <input type="text" name="cliente">
-      <button type="submit">Enviar</button>
-    </form>
+    <%- include('includes/messages') %>
+
+    <table>
+      <tr>
+        <td>Adrian</td>
+        <td>Mouzinho</td>
+        <td>adrianmouzinho@gmail.com</td>
+        <td>99991394321</td>
+        <td>
+          <a href="/login" class="editar">
+            Editar
+          </a>
+        </td>
+        <td>
+          <a href="/login" class="excluir">
+            Excluir
+          </a>
+        </td>
+      </tr>
+
+      <tr>
+        <td>Otávio</td>
+        <td>Miranda</td>
+        <td>otaviomiranda@gmail.com</td>
+        <td>81982122134</td>
+        <td>
+          <a href="/login" class="editar">
+            Editar
+          </a>
+        </td>
+        <td>
+          <a href="/login" class="excluir">
+            Excluir
+          </a>
+        </td>
+      </tr>
+    </table>
   </section>
 
 <%- include('includes/footer') %>

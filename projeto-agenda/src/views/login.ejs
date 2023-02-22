@@ -1,0 +1,23 @@
+<%- include('includes/head') %>
+<%- include('includes/nav') %>
+
+  <form action="/login" method="post" class="form form-login">
+    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+    <h1>Login</h1>
+    <p>Se já possui uma conta, faça login abaixo.</p>
+
+    <%- include('includes/messages') %>
+
+    <div>
+      <label for="email">Endereço de email</label>
+      <input type="email" id="email" placeholder="Informe seu email" name="email">
+    </div>
+    <div>
+      <label for="senha">Senha</label>
+      <input type="password" id="senha" placeholder="Senha" name="senha">
+    </div>
+    <button type="submit">Entrar</button>
+    <a href="/register">Ainda não tem uma conta? Criar conta</a>
+  </form>
+
+<%- include('includes/footer') %>

@@ -1,10 +1,19 @@
-exports.paginaInicial = (req, res) => {
-  return res.render('index', {
-    titulo: 'meu titulo',
-    numeros: [1,2,3,4,5,6,7,8,9],
-  })
+const Contato = require('../models/ContatoModel')
+
+exports.paginaInicial = async (req, res) => {
+  if (!req.session.usuario) {
+    return res.render('index')
+  }
+
+  const contatos = await Contato.listar()
+  return res.render('meusContatos', { contatos })
 }
 
-exports.trataPost = (req, res) => {
-  return res.send(req.body)
+exports.paginaSair = (req, res) => {
+  req.session.destroy()
+  return res.redirect('/')
+}
+
+exports.paginaBemVindo = (req, res) => {
+  return res.render('bemVindo')
 }

@@ -1,0 +1,21 @@
+<nav class="nav">
+  <a href="/" class="logo">Agenda</a>
+
+  <ul>
+    <% if (usuario) { %>
+      <li>
+        <a href="/contatos/register">Novo contato</a>
+      </li>
+      <li>
+        <a href="/logout">Sair</a>
+      </li>
+    <% } else { %>
+      <li>
+        <a href="/login">Entrar</a>
+      </li>
+      <li>
+        <a href="/register">Cadastrar</a>
+      </li>
+    <% } %>
+  </ul>
+</nav>

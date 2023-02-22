@@ -1,5 +1,0 @@
-<% controle de fluxo (if, for, ...) %>
-<%= imprime sem executar html (if, for, ...) %>
-<%- imprime executando html %>
-<%# comentários %>
-<%- include('caminho do arquivo') %>
