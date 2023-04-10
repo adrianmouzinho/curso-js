@@ -1,0 +1,13 @@
+main {
+  max-width: 400px;
+  padding: 1rem;
+  background-color: #fff;
+  border-radius: 0.25rem;
+  margin: 2rem auto;
+}
+
+main h1 {
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}

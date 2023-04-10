@@ -1,0 +1,26 @@
+* {
+  margin: 0;
+  padding: 0;
+  outline: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Helvetica, sans-serif;
+  background-color: #008a73;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  height: 1.5rem;
+  padding: 0 0.25rem;
+}
+
+ul {
+  list-style: none;
+}
+
+input {
+  height: 1.5rem;
+}
