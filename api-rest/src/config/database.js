@@ -1,18 +1,13 @@
-require('dotenv/config')
+const Sequelize = require('sequelize')
 
-module.exports = {
-  dialect: 'mariadb',
-  host: process.env.DATABASE_HOST,
-  port: process.env.DATABASE_PORT,
-  username: process.env.DATABASE_USER,
-  password: process.env.DATABASE_PASS,
+const sequelize = new Sequelize({
+  dialect: 'sqlite',
+  storage: process.env.DATABASE_URL,
   database: process.env.DATABASE,
   define: {
     timestamps: true,
-    underscored: true,
-  },
-  dialectOptions: {
-    timezone: 'America/Sao_Paulo',
-  },
-  timezone: 'America/Sao_Paulo',
-}
+    underscored: true
+  }
+})
+
+module.exports = sequelize

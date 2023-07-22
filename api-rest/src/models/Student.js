@@ -1,70 +1,52 @@
-const { DataTypes, Model } = require('sequelize')
+const { DataTypes } = require('sequelize')
+const sequelize = require('../config/database')
 
-class Student extends Model {
-  static init (sequelize) {
-    super.init({
-      name: {
-        type: DataTypes.STRING,
-        defaultValue: '',
-        validate: {
-          len: {
-            args: [2, 255],
-            msg: 'name must contain between 2 and 255 characters'
-          }
-        }
-      },
-      surname: {
-        type: DataTypes.STRING,
-        defaultValue: '',
-        validate: {
-          len: {
-            args: [2, 255],
-            msg: 'surname must contain between 2 and 255 characters'
-          }
-        }
-      },
-      email: {
-        type: DataTypes.STRING,
-        defaultValue: '',
-        validate: {
-          isEmail: {
-            msg: 'invalid e-mail'
-          }
-        }
-      },
-      age: {
-        type: DataTypes.INTEGER,
-        defaultValue: '',
-        validate: {
-          isInt: {
-            msg: 'type age must be integer'
-          }
-        }
-      },
-      weight: {
-        type: DataTypes.INTEGER,
-        defaultValue: '',
-        validate: {
-          isInt: {
-            msg: 'type weight must be integer'
-          }
-        }
-      },
-      height: {
-        type: DataTypes.INTEGER,
-        defaultValue: '',
-        validate: {
-          isInt: {
-            msg: 'type height must be integer'
-          }
-        }
-      }
-    }, { sequelize })
+const Student = sequelize.define('Student', {
+  id: {
+    type: DataTypes.UUID,
+    primaryKey: true,
+    allowNull: false,
+    defaultValue: DataTypes.UUIDV4
+  },
+  name: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+  surname: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+  email: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    unique: {
+      name: 'email',
+      msg: 'Esse e-mail já existe.'
+    }
+  },
+  avatarUrl: {
+    type: DataTypes.STRING
+  },
+  age: {
+    type: DataTypes.DATE,
+    allowNull: false
+  },
+  weight: {
+    type: DataTypes.INTEGER,
+    allowNull: false
+  },
+  height: {
+    type: DataTypes.INTEGER,
+    allowNull: false
+  },
+  createdAt: {
+    type: DataTypes.DATE,
+    defaultValue: DataTypes.NOW
+  },
+  updatedAt: {
+    type: DataTypes.DATE,
+    defaultValue: DataTypes.NOW
   }
-
-  static associate (models) {
-    this.hasMany(models.Image, { foreignKey: 'student_id' })
-  }
-}
+})
 
 module.exports = Student

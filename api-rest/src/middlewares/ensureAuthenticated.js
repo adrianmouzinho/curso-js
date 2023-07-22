@@ -6,7 +6,7 @@ async function ensureAuthenticated (req, res, next) {
 
   if (!authorization) {
     return res.status(401).json({
-      errors: ['login required']
+      errors: ['Você precisa fazer login.']
     })
   }
 
@@ -24,7 +24,7 @@ async function ensureAuthenticated (req, res, next) {
 
     if (!newUser) {
       return res.status(401).json({
-        errors: ['invalid user']
+        errors: ['Usuário inválido.']
       })
     }
 
@@ -33,7 +33,7 @@ async function ensureAuthenticated (req, res, next) {
     return next()
   } catch (error) {
     return res.status(401).json({
-      errors: ['invalid or expired token']
+      errors: ['Token inválido ou expirado.']
     })
   }
 }

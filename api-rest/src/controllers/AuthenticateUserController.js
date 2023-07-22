@@ -1,17 +1,18 @@
-const User = require('../models/User')
+const { z } = require('zod')
 const jwt = require('jsonwebtoken')
+const bcryptjs = require('bcryptjs')
+const User = require('../models/User')
 
 class AutenticateUserController {
   async handle (req, res) {
-    const { email, password } = req.body
-
-    if (!email || !password) {
-      return res.status(400).json({
-        errors: ['email or password are missing']
-      })
-    }
-
     try {
+      const bodySchema = z.object({
+        email: z.string().email('E-mail inválido!'),
+        password: z.string().min(6, 'A senha precisa ter pelo menos 6 caracteres.')
+      })
+
+      const { email, password } = bodySchema.parse(req.body)
+
       const user = await User.findOne({
         where: {
           email
@@ -20,15 +21,15 @@ class AutenticateUserController {
 
       if (!user) {
         return res.status(400).json({
-          errors: ['user not found']
+          errors: ['E-mail ou senha inválidos.']
         })
       }
 
-      const passwordIsValid = await user.passwordIsValid(password)
+      const isValidPassword = await bcryptjs.compare(password, user.password)
 
-      if (!passwordIsValid) {
+      if (!isValidPassword) {
         return res.status(400).json({
-          errors: ['invalid password']
+          errors: ['E-mail ou senha inválidos.']
         })
       }
 
